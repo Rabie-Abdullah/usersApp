@@ -4,34 +4,34 @@
       <input
         type="text"
         class="form-control"
-        id="userName"
+        id="name"
         ngModel
-        name="userName"
-        #title="ngModel"
+        name="name"
+        #name="ngModel"
         required
       />
-      <div class="d-flex justify-content-center" *ngIf="title.touched && title.invalid">
-        <div *ngIf="title.errors?.['required']">
-          *UserName is required*
+      <div class="d-flex justify-content-center" *ngIf="name.touched && name.invalid">
+        <div *ngIf="name.errors?.['required']">
+          *Name is required*
         </div>
   
       </div>
     </div>
   
     <div class="mb-3">
-      <label for="body" class="form-label">Email</label>
+      <label for="body" class="form-label">Company</label>
       <input
         type="text"
         class="form-control"
-        id="email"
+        id="company"
         ngModel
-        name="email"
-        #body="ngModel"
+        name="company"
+        #company="ngModel"
         required
       />
-      <div class="d-flex justify-content-center" *ngIf="body.touched && body.invalid">
-        <div *ngIf="body.errors?.['required']">
-          *Email is required*
+      <div class="d-flex justify-content-center" *ngIf="company.touched && company.invalid">
+        <div *ngIf="company.errors?.['required']">
+          *company is required*
         </div>
   
       </div>
@@ -48,11 +48,22 @@
             <div class="card-body">
               <h5 class="card-title">username: {{user.name}}</h5>
               <h5 class="card-title">company: {{user.company.name}}</h5>
+              <h5 class="card-title">company: {{user.company}}</h5>
+
               <h5 class="card-title">city: {{user.address.city}}</h5>
               <h5 class="card-title">lat: {{user.address.geo.lat}}</h5>
               <h5 class="card-title">long: {{user.address.geo.lng}}</h5>
+
+
+
               <a routerLink="/singleUser/{{ user.id }}">
                 <button type="button" class="btn btn-sm btn-primary">More info</button>
+              </a>
+
+                <button type="button" class="btn btn-sm btn-danger" (click)="deleteUsers(user.id, i)">delete</button>
+
+              <a routerLink="/editUser/{{ user.id }}">
+                <button type="button" class="btn btn-sm btn-success">Update</button>
               </a>
 
             </div>

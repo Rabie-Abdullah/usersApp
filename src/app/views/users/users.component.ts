@@ -35,6 +35,15 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  deleteUsers(user:any, i:number) {
+    this.userService.deleteUsers(user).subscribe({
+      next:() => {
+        this.users.splice(i, 1)
+      }
+    })
+
+  }
+
   ngOnInit(): void {
       this.getUsers()
   }
