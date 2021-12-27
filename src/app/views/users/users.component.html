@@ -1,0 +1,61 @@
+<form class="container mt-5" #myForm="ngForm" (ngSubmit)='addUsers(myForm.value)'>
+    <div class="mb-3">
+      <label for="title" class="form-label">UserName</label>
+      <input
+        type="text"
+        class="form-control"
+        id="userName"
+        ngModel
+        name="userName"
+        #title="ngModel"
+        required
+      />
+      <div class="d-flex justify-content-center" *ngIf="title.touched && title.invalid">
+        <div *ngIf="title.errors?.['required']">
+          *UserName is required*
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="body" class="form-label">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        ngModel
+        name="email"
+        #body="ngModel"
+        required
+      />
+      <div class="d-flex justify-content-center" *ngIf="body.touched && body.invalid">
+        <div *ngIf="body.errors?.['required']">
+          *Email is required*
+        </div>
+  
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]='myForm.invalid'>Submit</button>
+
+
+</form>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let user of users; let i =index">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">username: {{user.name}}</h5>
+              <h5 class="card-title">company: {{user.company.name}}</h5>
+              <h5 class="card-title">city: {{user.address.city}}</h5>
+              <h5 class="card-title">lat: {{user.address.geo.lat}}</h5>
+              <h5 class="card-title">long: {{user.address.geo.lng}}</h5>
+              <a routerLink="/singleUser/{{ user.id }}">
+                <button type="button" class="btn btn-sm btn-primary">More info</button>
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
